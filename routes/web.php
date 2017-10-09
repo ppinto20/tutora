@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::prefix('api')->group(function() {
     Route::resource('tasks', 'TaskController');
-});
 
-Route::get('/api/task/{id}', 'TaskController@show');
-Route::put('/api/task/{id}', 'TaskController@update');
+    Route::get('/task/{id}', 'TaskController@show');
+	Route::put('/task/{id}', 'TaskController@update');
+});
