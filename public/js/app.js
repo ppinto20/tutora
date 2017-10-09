@@ -42116,7 +42116,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         updateTask: function updateTask(id) {
             var _this3 = this;
 
-            axios.put('api/task/' + id, this.task).then(function (res) {
+            axios.put('api/tasks/' + id, this.task).then(function (res) {
                 _this3.task.description = '';
                 _this3.task.notification = '';
                 _this3.edit = false;
@@ -42129,7 +42129,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showTask: function showTask(id) {
             var _this4 = this;
 
-            axios.get('api/task/' + id).then(function (res) {
+            axios.get('api/tasks/' + id).then(function (res) {
                 _this4.task.id = res.data.id;
                 _this4.task.description = res.data.description;
                 _this4.edit = true;

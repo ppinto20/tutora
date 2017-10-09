@@ -30,7 +30,7 @@ class TaskController extends Controller
     {
         $this->validate($request, [
             'description'   => 'required|max:500',
-            'notification'  => 'email'
+            'notification'  => 'nullable|email'
         ]);
 
         $task = Task::create(['description' => request('description')]);
@@ -64,7 +64,7 @@ class TaskController extends Controller
     {
         $this->validate($request, [
             'description'   => 'required|max:500',
-            'notification'  => 'email'
+            'notification'  => 'nullable|email'
         ]);
 
         $task = Task::findOrFail($id);

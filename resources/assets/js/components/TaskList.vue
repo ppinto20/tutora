@@ -72,7 +72,7 @@
             },
 
             updateTask(id) {
-                axios.put('api/task/' + id, this.task)
+                axios.put('api/tasks/' + id, this.task)
                     .then((res) => {
                         this.task.description = ''
                         this.task.notification = '';
@@ -84,7 +84,7 @@
             },
 
             showTask(id) {
-                axios.get('api/task/' + id).then((res) => {
+                axios.get('api/tasks/' + id).then((res) => {
                     this.task.id = res.data.id
                     this.task.description = res.data.description
                     this.edit = true
