@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Task;
 use App\Mail\TaskNotification;
 use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendTaskNotification;
 
 
 class TaskController extends Controller
@@ -36,7 +37,7 @@ class TaskController extends Controller
         $task = Task::create(['description' => request('description')]);
 
         if (!empty($request->notification)) {
-            Mail::to($request->notification)->queue(new TaskNotification($task));
+            SendTaskNotification::dispatch($task, $request->notification);
         }
 
         return $task;
@@ -68,10 +69,10 @@ class TaskController extends Controller
         ]);
 
         $task = Task::findOrFail($id);
-        $task->update(['description' => $request->input(['description'])]);
+        $task->update(['description' => $request->description]);
 
         if (!empty($request->notification)) {
-            Mail::to($request->notification)->queue(new TaskNotification($task));
+            SendTaskNotification::dispatch($task, $request->notification);
         }
 
         return 200;
